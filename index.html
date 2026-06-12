@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>KAWAKI227 | HACKER PRO SYMBOL GENERATOR</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Orbitron', 'Share Tech Mono', monospace;
+        cursor: crosshair;
+    }
+
+    body {
+        background: #000;
+        color: #0f0;
+        overflow-x: hidden;
+        min-height: 100vh;
+    }
+
+    /* Video Background Cyberpunk */
+    #bgVideo {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: -3;
+        filter: brightness(0.4) contrast(1.3) hue-rotate(90deg);
+    }
+
+    .overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(circle at center, rgba(0,0,0,0.7) 0%, #000000e6 100%);
+        z-index: -2;
+    }
+
+    /* MATRIX FALLING ENHANCED */
+    .matrix {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        pointer-events: none;
+        z-index: -1;
+    }
+    .matrix span {
+        position: absolute;
+        color: #0f0;
+        font-family: 'Share Tech Mono', monospace;
+        font-size: 18px;
+        opacity: 0.4;
+        animation: fall linear infinite;
+        text-shadow: 0 0 5px #0f0;
+    }
+    @keyframes fall {
+        0% { transform: translateY(-100px); opacity: 0.2; }
+        100% { transform: translateY(120vh); opacity: 0.8; }
+    }
+
+    /* Glitch Header */
+    header {
+        padding: 20px 15px;
+        text-align: center;
+        position: relative;
+        z-index: 2;
+    }
+    .profile {
+        width: 160px;
+        height: 160px;
+        border-radius: 50%;
+        border: 3px solid #0f0;
+        object-fit: cover;
+        box-shadow: 0 0 30px #0f0, 0 0 10px #0f0 inset;
+        animation: pulseBorder 2s infinite alternate;
+        filter: grayscale(0.3) contrast(1.2);
+    }
+    @keyframes pulseBorder {
+        0% { box-shadow: 0 0 5px #0f0, 0 0 15px #0f0; border-color: #0f0; }
+        100% { box-shadow: 0 0 25px #0f0, 0 0 40px #0f0; border-color: #bf0; }
+    }
+    .logo {
+        font-size: 48px;
+        font-weight: 900;
+        color: #0f0;
+        margin-top: 15px;
+        text-shadow: 0 0 10px #0f0, 0 0 20px #0f0;
+        letter-spacing: 3px;
+        background: linear-gradient(135deg, #0f0, #0fa);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        text-shadow: none;
+    }
+    .sub {
+        margin-top: 8px;
+        font-family: 'Share Tech Mono', monospace;
+        color: #8f8;
+        font-size: 14px;
+        letter-spacing: 1px;
+    }
+
+    /* Cards style Hacker */
+    .card {
+        max-width: 1000px;
+        margin: 20px auto;
+        padding: 22px;
+        border-radius: 20px;
+        background: rgba(0, 0, 0, 0.75);
+        backdrop-filter: blur(12px);
+        border: 1px solid #0f0;
+        box-shadow: 0 0 25px rgba(0, 255, 0, 0.3), inset 0 0 10px rgba(0,255,0,0.1);
+        transition: 0.2s;
+    }
+    .card:hover {
+        border-color: #0f8;
+        box-shadow: 0 0 35px rgba(0, 255, 100, 0.5);
+    }
+    .idff {
+        font-size: 18px;
+        color: #0f0;
+        margin-top: 8px;
+        font-family: monospace;
+        word-break: break-all;
+    }
+    /* Socials glitch */
+    .socials {
+        display: flex;
+        justify-content: center;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-top: 20px;
+    }
+    .socials a {
+        text-decoration: none;
+        padding: 10px 18px;
+        border-radius: 30px;
+        background: rgba(0, 0, 0, 0.8);
+        border: 1px solid #0f0;
+        color: #0f0;
+        font-weight: 500;
+        font-size: 14px;
+        transition: 0.2s;
+        backdrop-filter: blur(5px);
+        letter-spacing: 1px;
+    }
+    .socials a:hover {
+        transform: translateY(-3px);
+        background: #0f0;
+        color: black;
+        box-shadow: 0 0 20px #0f0;
+        border-color: #fff;
+    }
+
+    /* Generator Zone */
+    .generator .card {
+        background: rgba(0, 0, 0, 0.85);
+    }
+    .input-box {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-top: 20px;
+    }
+    .input-box input {
+        width: 320px;
+        padding: 14px 18px;
+        border: none;
+        outline: none;
+        border-radius: 40px;
+        background: #0a0a0a;
+        border: 1.5px solid #0f0;
+        color: #0f0;
+        font-size: 18px;
+        font-family: monospace;
+        box-shadow: 0 0 8px rgba(0,255,0,0.5);
+        transition: 0.2s;
+    }
+    .input-box input:focus {
+        box-shadow: 0 0 20px #0f0;
+        background: #000;
+        border-color: #8f8;
+    }
+    .generate {
+        padding: 14px 28px;
+        border: none;
+        border-radius: 40px;
+        cursor: pointer;
+        background: #0f0;
+        font-weight: bold;
+        font-size: 16px;
+        color: #000;
+        font-family: 'Orbitron';
+        box-shadow: 0 0 10px #0f0;
+        transition: 0.2s;
+        letter-spacing: 1px;
+    }
+    .generate:hover {
+        transform: scale(1.02);
+        background: #8f8;
+        box-shadow: 0 0 25px #0f0;
+    }
+
+    /* Results Grid */
+    #result {
+        margin-top: 30px;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+        gap: 18px;
+        max-height: 550px;
+        overflow-y: auto;
+        padding: 8px;
+    }
+    #result::-webkit-scrollbar {
+        width: 6px;
+        background: #111;
+    }
+    #result::-webkit-scrollbar-thumb {
+        background: #0f0;
+        border-radius: 8px;
+    }
+    .result-card {
+        padding: 16px;
+        border-radius: 18px;
+        background: rgba(0, 18, 0, 0.7);
+        border: 1px solid #0f0;
+        backdrop-filter: blur(4px);
+        transition: 0.2s;
+        text-align: center;
+    }
+    .result-card:hover {
+        background: #0a1a0a;
+        transform: translateY(-3px);
+        border-color: #8f8;
+    }
+    .result-card div {
+        font-size: 20px;
+        word-break: break-word;
+        font-family: monospace;
+        background: #00000066;
+        padding: 8px;
+        border-radius: 12px;
+        margin-bottom: 10px;
+        letter-spacing: 1px;
+    }
+    .result-card button {
+        margin-top: 8px;
+        padding: 8px;
+        width: 100%;
+        border: none;
+        border-radius: 30px;
+        cursor: pointer;
+        background: #0f0;
+        font-weight: bold;
+        font-family: monospace;
+        color: #000;
+        transition: 0.1s;
+    }
+    .result-card button:active {
+        transform: scale(0.96);
+    }
+
+    /* Like Button Hacker */
+    .likeBox {
+        text-align: center;
+        margin: 25px auto;
+    }
+    .likeBtn {
+        padding: 14px 35px;
+        border: none;
+        border-radius: 50px;
+        cursor: pointer;
+        background: linear-gradient(145deg, #0a0f0a, #000);
+        color: #0f0;
+        font-size: 18px;
+        font-weight: bold;
+        border: 1px solid #0f0;
+        font-family: monospace;
+        transition: 0.2s;
+        box-shadow: 0 0 12px #0f0;
+    }
+    .likeBtn:hover {
+        background: #0f0;
+        color: black;
+        box-shadow: 0 0 30px #0f0;
+    }
+    footer {
+        margin-top: 35px;
+        padding: 25px;
+        text-align: center;
+        background: rgba(0, 0, 0, 0.8);
+        border-top: 1px solid #0f0;
+        font-size: 14px;
+    }
+
+    /* Glitch text effect */
+    .glitch-txt {
+        animation: glitch 1.2s infinite;
+    }
+    @keyframes glitch {
+        0% { text-shadow: -1px 0 #0f0, 1px 0 #0f0; }
+        50% { text-shadow: -2px 0 #0f8, 2px 0 #00ffaa; }
+        100% { text-shadow: 0 0 3px #0f0; }
+    }
+    /* blink cursor on ID */
+    .blink {
+        animation: blink 1s step-end infinite;
+    }
+    @keyframes blink {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.3; }
+    }
+    /* responsive */
+    @media (max-width: 600px) {
+        .logo { font-size: 32px; }
+        .profile { width: 120px; height: 120px; }
+        .result-card div { font-size: 16px; }
+    }
+</style>
+</head>
+<body>
+
+<video autoplay muted loop playsinline id="bgVideo">
+    <source src="https://files.catbox.moe/pavh9q.mp4" type="video/mp4">
+</video>
+<div class="overlay"></div>
+<audio autoplay loop>
+    <source src="https://files.catbox.moe/1rmk71.mp3" type="audio/mp3">
+</audio>
+
+<div class="matrix" id="matrix"></div>
+
+<header>
+    <img class="profile" src="https://files.catbox.moe/395fl2.jpg" alt="kawaki227">
+    <h1 class="logo">KAWAKI227</h1>
+    <p class="sub">⚡ [ HACKER PRO SYMBOL ENGINE ] ⚡</p>
+</header>
+
+<div class="card">
+    <h2 style="color:#0f0;">◈ ROOT ACCESS ◈</h2>
+    <p class="idff">🔓 FF ID : 7689336263 <span class="blink">_</span></p>
+    <p style="margin-top:12px; font-family:monospace;">🛸 FreeFire Elite • Code Architect • Underground Dev • KAWAKI227</p>
+    <div class="socials">
+        <a href="https://wa.link/dqbma7" target="_blank">📱 WhatsApp</a>
+        <a href="https://t.me/kawaki227" target="_blank">📡 Telegram</a>
+        <a href="https://tiktok.com/@kawaki227.ne" target="_blank">🎵 TikTok</a>
+        <a href="https://youtube.com/@kawaki-227?si=U0F-AV7bJIC8vnB7" target="_blank">▶ YouTube</a>
+        <a href="https://www.instagram.com/kawaki2279/" target="_blank">📸 Instagram</a>
+        <a href="https://github.com/kawaki2000" target="_blank">🐙 GitHub</a>
+        <a href="https://whatsapp.com/channel/0029VaZkyixAO7RPQWYG3M2m" target="_blank">💬 Channel</a>
+    </div>
+</div>
+
+<section class="generator">
+    <div class="card">
+        <h2 style="color:#0f0; text-align:center;">⎛⎝ FΣ SYMBOL GENERATOR ⎠⎞</h2>
+        <p style="margin-top:8px; text-align:center; font-family:monospace;">⟳ Générateur de pseudos stylés / Hacker Mood ⟳</p>
+        <div class="input-box">
+            <input type="text" id="name" placeholder="Enter username / Pseudo" autocomplete="off">
+            <button class="generate" onclick="generate()">⚡ GENERATE ⚡</button>
+        </div>
+        <div id="result"></div>
+    </div>
+</section>
+
+<div class="likeBox">
+    <button class="likeBtn" id="likeBtn">❤️‍🔥 KAWAKI227 : <span id="likes">6M</span>  ❤️‍🔥</button>
+</div>
+
+<footer>
+    <h2 style="color:#0f0;">♢ BY KAWAKI227 ♢</h2>
+    <p style="margin-top:8px;">Cyber Hacker Premium Interface | Encrypted Symbols</p>
+    <p style="margin-top:8px;">📍 Made In Niger 🇳🇪 | Root Access Only</p>
+</footer>
+
+<script>
+    // ========== MATRIX EFFECT (advanced) ==========
+    const matrixDiv = document.getElementById("matrix");
+    for(let i = 0; i < 140; i++) {
+        const span = document.createElement("span");
+        span.innerText = Math.random() > 0.5 ? "01" : "10";
+        span.style.left = Math.random() * 100 + "%";
+        span.style.animationDuration = (Math.random() * 9 + 3) + "s";
+        span.style.fontSize = (Math.random() * 22 + 8) + "px";
+        span.style.opacity = Math.random() * 0.5 + 0.2;
+        span.style.animationDelay = Math.random() * 8 + "s";
+        matrixDiv.appendChild(span);
+    }
+
+    // ========== LIKE SYSTEM (localstorage with million format) ==========
+    let likes = parseInt(localStorage.getItem("hacker_likes")) || 6290000;
+    function updateLikeDisplay() {
+        let displayVal;
+        if(likes >= 1000000) {
+            displayVal = (likes / 1000000).toFixed(1) + "M";
+        } else if(likes >= 1000) {
+            displayVal = (likes / 1000).toFixed(1) + "K";
+        } else {
+            displayVal = likes;
+        }
+        document.getElementById("likes").innerText = displayVal;
+    }
+    updateLikeDisplay();
+    document.getElementById("likeBtn").onclick = () => {
+        likes += 5000;
+        localStorage.setItem("hacker_likes", likes);
+        updateLikeDisplay();
+        // petit effet feedback
+        let btn = document.getElementById("likeBtn");
+        btn.style.transform = "scale(0.96)";
+        setTimeout(() => btn.style.transform = "", 120);
+    };
+
+    // secure copy function
+    function copyText(text) {
+        let finalText = text.replace(/\\'/g, "'").replace(/\\"/g, '"');
+        navigator.clipboard.writeText(finalText).then(() => {
+            alert("✔️ Pseudo copié en mémoire ✔️\n" + finalText);
+        }).catch(() => {
+            alert("⚠️ Copie manuelle : " + finalText);
+        });
+    }
+
+    // ========== GIGA STYLES ARRAY : fixed all broken quotes & duplicates ==========
+    function generate() {
+        let name = document.getElementById("name").value.trim();
+        if(name === "") {
+            alert("⛔ ENTRE UN PSEUDO VALIDE ⛔");
+            return;
+        }
+
+        // Nettoyage des caractères trop spéciaux pour éviter crash mais garder le style
+        let safeName = name;
+        const styles = [
+            "⫸⫷" + safeName + "⫷⫸", "⌬"+safeName+"⌬", "⛧"+safeName+"⛧", "꧁"+safeName+"꧂",
+            "☠"+safeName+"☠", "☢"+safeName+"☢", "☯"+safeName+"☯", "⚡"+safeName+"⚡",
+            "✪"+safeName+"✪", "★"+safeName+"★", "☆"+safeName+"☆", "⛤"+safeName+"⛤",
+            "✠"+safeName+"✠", "❄️"+safeName+"❄️", "🔥"+safeName+"🔥", "💀"+safeName+"💀",
+            "👾"+safeName+"👾", "🤖"+safeName+"🤖", "😈"+safeName+"😈", "🎭"+safeName+"🎭",
+            "⛩️"+safeName+"⛩️", "🧿"+safeName+"🧿", "🔮"+safeName+"🔮", "⚔️"+safeName+"⚔️",
+            "🛡️"+safeName+"🛡️", "🌀"+safeName+"🌀", "🌊"+safeName+"🌊", "🌙"+safeName+"🌙",
+            "☄️"+safeName+"☄️", "✨"+safeName+"✨", "⭐"+safeName+"⭐", "🌠"+safeName+"🌠",
+            "⌘"+safeName+"⌘", "⎋"+safeName+"⎋", "⎈"+safeName+"⎈", "⏣"+safeName+"⏣",
+            "⸸"+safeName+"⸸", "⸙"+safeName+"⸙", "⸚"+safeName+"⸚", "⸜"+safeName+"⸝",
+            "꧁༺"+safeName+"༻꧂", "꧁☬"+safeName+"☬꧂", "☠︎︎"+safeName+"☠︎︎", "⛥"+safeName+"⛥",
+            "⛧"+safeName+"⛧", "🜏"+safeName+"🜏", "🝆"+safeName+"🝆", "🝙"+safeName+"🝙",
+            "⎛⎝"+safeName+"⎠⎞", "▂▃▅▇"+safeName+"▇▅▃▂", "◥◣"+safeName+"◢◤", "◢◤"+safeName+"◥◣",
+            "┌П┐"+safeName+"┌П┐", "⫷"+safeName+"⫸", "⫸"+safeName+"⫷", "⎛⎞"+safeName+"⎛⎞",
+            "⋆⁺₊☾"+safeName+"☽₊⁺⋆", "₊✧ꕤ"+safeName+"ꕤ✧₊", "⋆｡°✩"+safeName+"✩°｡⋆",
+            "⎝⎛"+safeName+"⎞⎠", "▐░"+safeName+"░▌", "▀▄"+safeName+"▄▀", "◈"+safeName+"◈",
+            "▪️"+safeName+"▪️", "◽️"+safeName+"◽️", "▫️"+safeName+"▫️", "◼️"+safeName+"◼️",
+            "◆"+safeName+"◆", "◇"+safeName+"◇", "⬚"+safeName+"⬚", "⭒"+safeName+"⭒",
+            "⨀"+safeName+"⨀", "⨂"+safeName+"⨂", "⨁"+safeName+"⨁", "⨳"+safeName+"⨳",
+            "⨻"+safeName+"⨻", "⨼"+safeName+"⨼", "⨽"+safeName+"⨽", "⨿"+safeName+"⨿",
+            "𐌄"+safeName+"𐌄", "𐌅"+safeName+"𐌅", "𐌆"+safeName+"𐌆", "𐌇"+safeName+"𐌇",
+            "⎛⌁⎞"+safeName+"⎛⌁⎞", "⌇"+safeName+"⌇", "⌲"+safeName+"⌲", "⌴"+safeName+"⌴",
+            "⌬"+safeName+"⌬", "⎔"+safeName+"⎔", "⍟"+safeName+"⍟", "⌖"+safeName+"⌖",
+            "⎋"+safeName+"⎋", "⍟"+safeName+"⍟", "⋆"+safeName+"⋆", "✧"+safeName+"✧",
+            "✦"+safeName+"✦", "✩"+safeName+"✩", "✫"+safeName+"✫", "✬"+safeName+"✬",
+            "✭"+safeName+"✭", "✮"+safeName+"✮", "✯"+safeName+"✯", "✰"+safeName+"✰",
+            "𖤐"+safeName+"𖤐", "𖣠"+safeName+"𖣠", "𖥧"+safeName+"𖥧", "𖦹"+safeName+"𖦹",
+            "𖢌"+safeName+"𖢌", "𖣔"+safeName+"𖣔", "𖤍"+safeName+"𖤍", "𖤓"+safeName+"𖤓",
+            "⛑️"+safeName+"⛑️", "⚙️"+safeName+"⚙️", "⌛"+safeName+"⌛", "⏳"+safeName+"⏳",
+            "🎲"+safeName+"🎲", "♟️"+safeName+"♟️", "♠️"+safeName+"♠️", "♥️"+safeName+"♥️",
+            "♦️"+safeName+"♦️", "♣️"+safeName+"♣️", "♨️"+safeName+"♨️", "⛓️"+safeName+"⛓️",
+            "꧁༒"+safeName+"༒꧂", "༺"+safeName+"༻", "༄"+safeName+"༄", "༆"+safeName+"༆",
+            "༒"+safeName+"༒", "༗"+safeName+"༗", "༛"+safeName+"༛", "༜"+safeName+"༜",
+            "ᚠ"+safeName+"ᚠ", "ᚨ"+safeName+"ᚨ", "ᚱ"+safeName+"ᚱ", "ᚦ"+safeName+"ᚦ",
+            "ⴳ"+safeName+"ⴳ", "ⴷ"+safeName+"ⴷ", "ⵣ"+safeName+"ⵣ", "ⵔ"+safeName+"ⵔ",
+            "𐌀"+safeName+"𐌀", "𐌁"+safeName+"𐌁", "𐌂"+safeName+"𐌂", "𐌃"+safeName+"𐌃",
+            "➳"+safeName+"➳", "➴"+safeName+"➴", "➵"+safeName+"➵", "➶"+safeName+"➶",
+            "➷"+safeName+"➷", "➸"+safeName+"➸", "➹"+safeName+"➹", "➺"+safeName+"➺",
+            "⤞"+safeName+"⤞", "⤟"+safeName+"⤟", "⤠"+safeName+"⤠", "⤝"+safeName+"⤝",
+            "ᛟ"+safeName+"ᛟ", "ᛞ"+safeName+"ᛞ", "ᛉ"+safeName+"ᛉ", "ᛏ"+safeName+"ᛏ",
+            "ᛗ"+safeName+"ᛗ", "ᚲ"+safeName+"ᚲ", "ᚹ"+safeName+"ᚹ", "ᚻ"+safeName+"ᚻ"
+        ];
+
+        let html = "";
+        // Dedicated loop with unique styles (safe avoid broken string)
+        for(let style of styles) {
+            let finalRender = style;
+            // escape the content only for attribute onclick but keep visual
+            let escapedForCopy = finalRender.replace(/'/g, "\\'");
+            html += `
+                <div class="result-card">
+                    <div style="font-size:22px; font-weight:500;">${finalRender}</div>
+                    <button onclick="copyText('${escapedForCopy}')">📋 COPIER [HACK MODE]</button>
+                </div>
+            `;
+        }
+        document.getElementById("result").innerHTML = html;
+    }
+
+    // optional: load some demo styles at start with cool msg
+    window.onload = () => {
+        // little intro message + first generate "KAWAKI"
+        let defaultName = "KAWAKI";
+        document.getElementById("name").value = defaultName;
+        generate();
+        // matrix glitch additional
+        setInterval(() => {
+            const spans = document.querySelectorAll('.matrix span');
+            if(spans.length > 30) {
+                let randomSpan = spans[Math.floor(Math.random() * spans.length)];
+                if(randomSpan) randomSpan.style.opacity = Math.random() * 0.8 + 0.2;
+            }
+        }, 800);
+    };
+</script>
+</body>
+</html>
